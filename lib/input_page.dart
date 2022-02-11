@@ -15,22 +15,22 @@ class _InputPageState extends State<InputPage> {
         body: Column(
           children: [
             SizedBox(
-              height: 20,
+              height: 10,
             ),
             Expanded(
                 child: Row(
               children: [
                 SizedBox(
-                  width: 20,
+                  width: 10,
                 ),
                 Expanded(
-                  child: Primary_Card(selected_color : Color(0XFF1D1E33)),
+                  child: Primary_Card(selected_color: Color(0XFF1D1E33)),
                 ),
                 Expanded(
-                  child: Primary_Card(selected_color : Color(0XFF1D1E33)),
+                  child: Primary_Card(selected_color: Color(0XFF1D1E33)),
                 ),
                 SizedBox(
-                  width: 20,
+                  width: 10,
                 ),
               ],
             )),
@@ -38,13 +38,13 @@ class _InputPageState extends State<InputPage> {
                 child: Row(
               children: [
                 SizedBox(
-                  width: 20,
+                  width: 10,
                 ),
                 Expanded(
-                  child: Primary_Card(selected_color : Color(0XFF1D1E33)),
+                  child: Primary_Card(selected_color: Color(0XFF1D1E33)),
                 ),
                 SizedBox(
-                  width: 20,
+                  width: 10,
                 ),
               ],
             )),
@@ -52,21 +52,26 @@ class _InputPageState extends State<InputPage> {
                 child: Row(
               children: [
                 SizedBox(
-                  width: 20,
+                  width: 10,
                 ),
                 Expanded(
-                  child: Primary_Card(selected_color : Color(0XFF1D1E33)),
+                  child: Primary_Card(selected_color: Color(0XFF1D1E33)),
                 ),
                 Expanded(
-                  child: Primary_Card(selected_color : Color(0XFF1D1E33)),
+                  child: Primary_Card(selected_color: Color(0XFF1D1E33)),
                 ),
                 SizedBox(
-                  width: 20,
+                  width: 10,
                 ),
               ],
             )),
             SizedBox(
-              height: 20,
+              height: 10,
+            ),
+            Container(
+              color: Color(0XFFEB1555),
+              height: 80,
+              width: double.infinity,
             ),
           ],
         ));
@@ -75,6 +80,7 @@ class _InputPageState extends State<InputPage> {
 
 class Primary_Card extends StatelessWidget {
   Primary_Card({@required this.selected_color});
+
   final Color selected_color;
 
   @override
