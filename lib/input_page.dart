@@ -1,4 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'primary_card.dart';
+import 'inside_card.dart';
 
 class InputPage extends StatefulWidget {
   @override
@@ -24,10 +27,22 @@ class _InputPageState extends State<InputPage> {
                   width: 10,
                 ),
                 Expanded(
-                  child: Primary_Card(selected_color: Color(0XFF1D1E33)),
+                  child: Primary_Card(
+                    selected_color: Color(0XFF1D1E33),
+                    inside_card: Icon_and_name(
+                      icon_select: FontAwesomeIcons.mars,
+                      icon_name: 'MALE',
+                    ),
+                  ),
                 ),
                 Expanded(
-                  child: Primary_Card(selected_color: Color(0XFF1D1E33)),
+                  child: Primary_Card(
+                    selected_color: Color(0XFF1D1E33),
+                    inside_card: Icon_and_name(
+                      icon_select: FontAwesomeIcons.venus,
+                      icon_name: 'FEMALE',
+                    ),
+                  ),
                 ),
                 SizedBox(
                   width: 10,
@@ -78,19 +93,3 @@ class _InputPageState extends State<InputPage> {
   }
 }
 
-class Primary_Card extends StatelessWidget {
-  Primary_Card({@required this.selected_color});
-
-  final Color selected_color;
-
-  @override
-  Widget build(BuildContext context) {
-    return Container(
-      margin: EdgeInsets.all(10),
-      decoration: BoxDecoration(
-        color: selected_color,
-        borderRadius: BorderRadius.circular(20),
-      ),
-    );
-  }
-}
