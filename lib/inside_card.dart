@@ -20,6 +20,7 @@ class Icon_and_name extends StatelessWidget {
           height: 10,
         ),
         Text(icon_name,
+
             style: TextStyle(fontSize: 18, color: Color(0XFF8D8E98)))
       ],
     );

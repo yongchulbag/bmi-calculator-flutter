@@ -36,39 +36,35 @@ class _InputPageState extends State<InputPage> {
                   width: 10,
                 ),
                 Expanded(
-                  child: GestureDetector(
-                    onTap: () {
+                  child: Primary_Card(
+                    selected_color: selectedGender == Gender.male
+                        ? activatedCardColor
+                        : inactivatedCardColor,
+                    inside_card: Icon_and_name(
+                      icon_select: FontAwesomeIcons.mars,
+                      icon_name: 'MALE',
+                    ),
+                    onClick: () {
                       setState(() {
                         selectedGender = Gender.male;
                       });
                     },
-                    child: Primary_Card(
-                      selected_color: selectedGender == Gender.male
-                          ? activatedCardColor
-                          : inactivatedCardColor,
-                      inside_card: Icon_and_name(
-                        icon_select: FontAwesomeIcons.mars,
-                        icon_name: 'MALE',
-                      ),
-                    ),
                   ),
                 ),
                 Expanded(
-                  child: GestureDetector(
-                    onTap: () {
+                  child: Primary_Card(
+                    selected_color: selectedGender == Gender.female
+                        ? activatedCardColor
+                        : inactivatedCardColor,
+                    inside_card: Icon_and_name(
+                      icon_select: FontAwesomeIcons.venus,
+                      icon_name: 'FEMALE',
+                    ),
+                    onClick: () {
                       setState(() {
                         selectedGender = Gender.female;
                       });
                     },
-                    child: Primary_Card(
-                      selected_color: selectedGender == Gender.female
-                          ? activatedCardColor
-                          : inactivatedCardColor,
-                      inside_card: Icon_and_name(
-                        icon_select: FontAwesomeIcons.venus,
-                        icon_name: 'FEMALE',
-                      ),
-                    ),
                   ),
                 ),
                 SizedBox(
