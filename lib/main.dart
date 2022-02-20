@@ -1,6 +1,12 @@
 import 'package:flutter/material.dart';
 import 'input_page.dart';
 
+const primary_CardTextStyle = TextStyle(fontSize: 18, color: Color(0XFF8D8E98));
+const primary_LargeTextStyle = TextStyle(fontSize: 50.0, fontWeight: FontWeight.w900,);
+
+const Color activatedCardColor = Color(0XFF1D1E33);
+const Color inactivatedCardColor = Color(0XFF111328);
+
 void main() => runApp(BMICalculator());
 
 class BMICalculator extends StatelessWidget {
@@ -15,5 +21,3 @@ class BMICalculator extends StatelessWidget {
     );
   }
 }
-
-

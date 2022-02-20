@@ -1,10 +1,10 @@
+import 'package:bmi_calculator/main.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'primary_card.dart';
 import 'inside_card.dart';
 
-const Color activatedCardColor = Color(0XFF1D1E33);
-const Color inactivatedCardColor = Color(0XFF111328);
 enum Gender {
   male,
   female,
@@ -17,6 +17,7 @@ class InputPage extends StatefulWidget {
 
 class _InputPageState extends State<InputPage> {
   Gender selectedGender;
+  int user_Height=170;
 
   @override
   Widget build(BuildContext context) {
@@ -79,7 +80,30 @@ class _InputPageState extends State<InputPage> {
                   width: 10,
                 ),
                 Expanded(
-                  child: Primary_Card(selected_color: activatedCardColor),
+                  child: Primary_Card(
+                      selected_color: activatedCardColor,
+                      inside_card: Column(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          Text(
+                            'HEIGHT',
+                            style: primary_CardTextStyle,
+                          ),
+                          Row(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            crossAxisAlignment: CrossAxisAlignment.baseline,
+                            textBaseline: TextBaseline.alphabetic,
+                            children: [
+                              Text(user_Height.toString(),
+                                  style: primary_LargeTextStyle),
+                              Text('cm', style: primary_CardTextStyle),
+                            ],
+                          ),
+                          Slider(value: user_Height.toDouble(), min:130.0, max: 220.0, activeColor: Color(0XFFEB1555), inactiveColor: Color(0XFF8D8E98),onChanged: (double changed_Value) {setState(() {
+                            user_Height=changed_Value.round();
+                          });})
+                        ],
+                      )),
                 ),
                 SizedBox(
                   width: 10,
