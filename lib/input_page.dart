@@ -3,7 +3,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'primary_card.dart';
-import 'inside_card.dart';
+import 'icon_inside_card.dart';
 
 enum Gender {
   male,
@@ -17,7 +17,9 @@ class InputPage extends StatefulWidget {
 
 class _InputPageState extends State<InputPage> {
   Gender selectedGender;
-  int user_Height=170;
+  int user_Height = 170;
+  int user_Weight = 50;
+  int user_Age = 20;
 
   @override
   Widget build(BuildContext context) {
@@ -99,9 +101,27 @@ class _InputPageState extends State<InputPage> {
                               Text('cm', style: primary_CardTextStyle),
                             ],
                           ),
-                          Slider(value: user_Height.toDouble(), min:130.0, max: 220.0, activeColor: Color(0XFFEB1555), inactiveColor: Color(0XFF8D8E98),onChanged: (double changed_Value) {setState(() {
-                            user_Height=changed_Value.round();
-                          });})
+                          SliderTheme(
+                            data: SliderTheme.of(context).copyWith(
+                              thumbColor: Color(0XFFEB1555),
+                              activeTrackColor: Colors.white,
+                              inactiveTrackColor: Color(0XFF8D8E98),
+                              overlayColor: Color(0X1FEB1555),
+                              thumbShape: RoundSliderThumbShape(
+                                  enabledThumbRadius: 15.0),
+                              overlayShape:
+                                  RoundSliderOverlayShape(overlayRadius: 30.0),
+                            ),
+                            child: Slider(
+                                value: user_Height.toDouble(),
+                                min: 130.0,
+                                max: 220.0,
+                                onChanged: (double changed_Value) {
+                                  setState(() {
+                                    user_Height = changed_Value.round();
+                                  });
+                                }),
+                          )
                         ],
                       )),
                 ),
@@ -117,10 +137,82 @@ class _InputPageState extends State<InputPage> {
                   width: 10,
                 ),
                 Expanded(
-                  child: Primary_Card(selected_color: activatedCardColor),
+                  child: Primary_Card(
+                    selected_color: activatedCardColor,
+                    inside_card: Column(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        Text(
+                          'WEIGHT',
+                          style: primary_CardTextStyle,
+                        ),
+                        Text(
+                          user_Weight.toString(),
+                          style: primary_LargeTextStyle,
+                        ),
+                        Row(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            children: [
+                              RoundIconButton(
+                                  icon: FontAwesomeIcons.minus,
+                                  onPressed: () {
+                                    setState(() {
+                                      user_Weight--;
+                                    });
+                                  }),
+                              SizedBox(
+                                width: 10.0,
+                              ),
+                              RoundIconButton(
+                                  icon: FontAwesomeIcons.plus,
+                                  onPressed: () {
+                                    setState(() {
+                                      user_Weight++;
+                                    });
+                                  }),
+                            ]),
+                      ],
+                    ),
+                  ),
                 ),
                 Expanded(
-                  child: Primary_Card(selected_color: activatedCardColor),
+                  child: Primary_Card(
+                    selected_color: activatedCardColor,
+                    inside_card: Column(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        Text(
+                          'AGE',
+                          style: primary_CardTextStyle,
+                        ),
+                        Text(
+                          user_Age.toString(),
+                          style: primary_LargeTextStyle,
+                        ),
+                        Row(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            children: [
+                              RoundIconButton(
+                                  icon: FontAwesomeIcons.minus,
+                                  onPressed: () {
+                                    setState(() {
+                                      user_Age--;
+                                    });
+                                  }),
+                              SizedBox(
+                                width: 10.0,
+                              ),
+                              RoundIconButton(
+                                  icon: FontAwesomeIcons.plus,
+                                  onPressed: () {
+                                    setState(() {
+                                      user_Age++;
+                                    });
+                                  }),
+                            ]),
+                      ],
+                    ),
+                  ),
                 ),
                 SizedBox(
                   width: 10,
@@ -137,5 +229,26 @@ class _InputPageState extends State<InputPage> {
             ),
           ],
         ));
+  }
+}
+
+class RoundIconButton extends StatelessWidget {
+  RoundIconButton({this.icon, this.onPressed});
+
+  final IconData icon;
+  final Function onPressed;
+
+  @override
+  Widget build(BuildContext context) {
+    return RawMaterialButton(
+      onPressed: onPressed,
+      child: Icon(icon),
+      constraints: BoxConstraints.tightFor(
+        width: 56,
+        height: 56,
+      ),
+      shape: CircleBorder(),
+      fillColor: Color(0XFF4C4F5E),
+    );
   }
 }
