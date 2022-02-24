@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'primary_card.dart';
 import 'icon_inside_card.dart';
+import 'result_page.dart';
 
 enum Gender {
   male,
@@ -24,211 +25,221 @@ class _InputPageState extends State<InputPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        appBar: AppBar(
-          title: Text('BMI CALCULATOR'),
-        ),
-        body: Column(
-          children: [
-            SizedBox(
-              height: 10,
-            ),
-            Expanded(
-                child: Row(
-              children: [
-                SizedBox(
-                  width: 10,
-                ),
-                Expanded(
-                  child: Primary_Card(
-                    selected_color: selectedGender == Gender.male
-                        ? activatedCardColor
-                        : inactivatedCardColor,
-                    inside_card: Icon_and_name(
-                      icon_select: FontAwesomeIcons.mars,
-                      icon_name: 'MALE',
-                    ),
-                    onClick: () {
-                      setState(() {
-                        selectedGender = Gender.male;
-                      });
-                    },
+      appBar: AppBar(
+        title: Text('BMI CALCULATOR'),
+      ),
+      body: Column(
+        children: [
+        SizedBox(
+        height: 10,
+      ),
+      Expanded(
+          child: Row(
+            children: [
+              SizedBox(
+                width: 10,
+              ),
+              Expanded(
+                child: Primary_Card(
+                  selected_color: selectedGender == Gender.male
+                      ? activatedCardColor
+                      : inactivatedCardColor,
+                  inside_card: Icon_and_name(
+                    icon_select: FontAwesomeIcons.mars,
+                    icon_name: 'MALE',
                   ),
+                  onClick: () {
+                    setState(() {
+                      selectedGender = Gender.male;
+                    });
+                  },
                 ),
-                Expanded(
-                  child: Primary_Card(
-                    selected_color: selectedGender == Gender.female
-                        ? activatedCardColor
-                        : inactivatedCardColor,
-                    inside_card: Icon_and_name(
-                      icon_select: FontAwesomeIcons.venus,
-                      icon_name: 'FEMALE',
-                    ),
-                    onClick: () {
-                      setState(() {
-                        selectedGender = Gender.female;
-                      });
-                    },
+              ),
+              Expanded(
+                child: Primary_Card(
+                  selected_color: selectedGender == Gender.female
+                      ? activatedCardColor
+                      : inactivatedCardColor,
+                  inside_card: Icon_and_name(
+                    icon_select: FontAwesomeIcons.venus,
+                    icon_name: 'FEMALE',
                   ),
+                  onClick: () {
+                    setState(() {
+                      selectedGender = Gender.female;
+                    });
+                  },
                 ),
-                SizedBox(
-                  width: 10,
-                ),
-              ],
-            )),
-            Expanded(
-                child: Row(
-              children: [
-                SizedBox(
-                  width: 10,
-                ),
-                Expanded(
-                  child: Primary_Card(
-                      selected_color: activatedCardColor,
-                      inside_card: Column(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: [
-                          Text(
-                            'HEIGHT',
-                            style: primary_CardTextStyle,
+              ),
+              SizedBox(
+                width: 10,
+              ),
+            ],
+          )),
+      Expanded(
+          child: Row(
+            children: [
+              SizedBox(
+                width: 10,
+              ),
+              Expanded(
+                child: Primary_Card(
+                    selected_color: activatedCardColor,
+                    inside_card: Column(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        Text(
+                          'HEIGHT',
+                          style: primary_CardTextStyle,
+                        ),
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          crossAxisAlignment: CrossAxisAlignment.baseline,
+                          textBaseline: TextBaseline.alphabetic,
+                          children: [
+                            Text(user_Height.toString(),
+                                style: primary_LargeTextStyle),
+                            Text('cm', style: primary_CardTextStyle),
+                          ],
+                        ),
+                        SliderTheme(
+                          data: SliderTheme.of(context).copyWith(
+                            thumbColor: Color(0XFFEB1555),
+                            activeTrackColor: Colors.white,
+                            inactiveTrackColor: Color(0XFF8D8E98),
+                            overlayColor: Color(0X1FEB1555),
+                            thumbShape: RoundSliderThumbShape(
+                                enabledThumbRadius: 15.0),
+                            overlayShape:
+                            RoundSliderOverlayShape(overlayRadius: 30.0),
                           ),
-                          Row(
-                            mainAxisAlignment: MainAxisAlignment.center,
-                            crossAxisAlignment: CrossAxisAlignment.baseline,
-                            textBaseline: TextBaseline.alphabetic,
-                            children: [
-                              Text(user_Height.toString(),
-                                  style: primary_LargeTextStyle),
-                              Text('cm', style: primary_CardTextStyle),
-                            ],
-                          ),
-                          SliderTheme(
-                            data: SliderTheme.of(context).copyWith(
-                              thumbColor: Color(0XFFEB1555),
-                              activeTrackColor: Colors.white,
-                              inactiveTrackColor: Color(0XFF8D8E98),
-                              overlayColor: Color(0X1FEB1555),
-                              thumbShape: RoundSliderThumbShape(
-                                  enabledThumbRadius: 15.0),
-                              overlayShape:
-                                  RoundSliderOverlayShape(overlayRadius: 30.0),
-                            ),
-                            child: Slider(
-                                value: user_Height.toDouble(),
-                                min: 130.0,
-                                max: 220.0,
-                                onChanged: (double changed_Value) {
+                          child: Slider(
+                              value: user_Height.toDouble(),
+                              min: 130.0,
+                              max: 220.0,
+                              onChanged: (double changed_Value) {
+                                setState(() {
+                                  user_Height = changed_Value.round();
+                                });
+                              }),
+                        )
+                      ],
+                    )),
+              ),
+              SizedBox(
+                width: 10,
+              ),
+            ],
+          )),
+      Expanded(
+          child: Row(
+            children: [
+              SizedBox(
+                width: 10,
+              ),
+              Expanded(
+                child: Primary_Card(
+                  selected_color: activatedCardColor,
+                  inside_card: Column(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      Text(
+                        'WEIGHT',
+                        style: primary_CardTextStyle,
+                      ),
+                      Text(
+                        user_Weight.toString(),
+                        style: primary_LargeTextStyle,
+                      ),
+                      Row(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: [
+                            RoundIconButton(
+                                icon: FontAwesomeIcons.minus,
+                                onPressed: () {
                                   setState(() {
-                                    user_Height = changed_Value.round();
+                                    user_Weight--;
                                   });
                                 }),
-                          )
-                        ],
-                      )),
-                ),
-                SizedBox(
-                  width: 10,
-                ),
-              ],
-            )),
-            Expanded(
-                child: Row(
-              children: [
-                SizedBox(
-                  width: 10,
-                ),
-                Expanded(
-                  child: Primary_Card(
-                    selected_color: activatedCardColor,
-                    inside_card: Column(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
-                        Text(
-                          'WEIGHT',
-                          style: primary_CardTextStyle,
-                        ),
-                        Text(
-                          user_Weight.toString(),
-                          style: primary_LargeTextStyle,
-                        ),
-                        Row(
-                            mainAxisAlignment: MainAxisAlignment.center,
-                            children: [
-                              RoundIconButton(
-                                  icon: FontAwesomeIcons.minus,
-                                  onPressed: () {
-                                    setState(() {
-                                      user_Weight--;
-                                    });
-                                  }),
-                              SizedBox(
-                                width: 10.0,
-                              ),
-                              RoundIconButton(
-                                  icon: FontAwesomeIcons.plus,
-                                  onPressed: () {
-                                    setState(() {
-                                      user_Weight++;
-                                    });
-                                  }),
-                            ]),
-                      ],
-                    ),
+                            SizedBox(
+                              width: 10.0,
+                            ),
+                            RoundIconButton(
+                                icon: FontAwesomeIcons.plus,
+                                onPressed: () {
+                                  setState(() {
+                                    user_Weight++;
+                                  });
+                                }),
+                          ]),
+                    ],
                   ),
                 ),
-                Expanded(
-                  child: Primary_Card(
-                    selected_color: activatedCardColor,
-                    inside_card: Column(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
-                        Text(
-                          'AGE',
-                          style: primary_CardTextStyle,
-                        ),
-                        Text(
-                          user_Age.toString(),
-                          style: primary_LargeTextStyle,
-                        ),
-                        Row(
-                            mainAxisAlignment: MainAxisAlignment.center,
-                            children: [
-                              RoundIconButton(
-                                  icon: FontAwesomeIcons.minus,
-                                  onPressed: () {
-                                    setState(() {
-                                      user_Age--;
-                                    });
-                                  }),
-                              SizedBox(
-                                width: 10.0,
-                              ),
-                              RoundIconButton(
-                                  icon: FontAwesomeIcons.plus,
-                                  onPressed: () {
-                                    setState(() {
-                                      user_Age++;
-                                    });
-                                  }),
-                            ]),
-                      ],
-                    ),
+              ),
+              Expanded(
+                child: Primary_Card(
+                  selected_color: activatedCardColor,
+                  inside_card: Column(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      Text(
+                        'AGE',
+                        style: primary_CardTextStyle,
+                      ),
+                      Text(
+                        user_Age.toString(),
+                        style: primary_LargeTextStyle,
+                      ),
+                      Row(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: [
+                            RoundIconButton(
+                                icon: FontAwesomeIcons.minus,
+                                onPressed: () {
+                                  setState(() {
+                                    user_Age--;
+                                  });
+                                }),
+                            SizedBox(
+                              width: 10.0,
+                            ),
+                            RoundIconButton(
+                                icon: FontAwesomeIcons.plus,
+                                onPressed: () {
+                                  setState(() {
+                                    user_Age++;
+                                  });
+                                }),
+                          ]),
+                    ],
                   ),
                 ),
-                SizedBox(
-                  width: 10,
-                ),
-              ],
-            )),
-            SizedBox(
-              height: 10,
-            ),
-            Container(
-              color: Color(0XFFEB1555),
-              height: 80,
-              width: double.infinity,
-            ),
-          ],
-        ));
+              ),
+              SizedBox(
+                width: 10,
+              ),
+            ],
+          )),
+      SizedBox(
+        height: 10,
+      ),
+      GestureDetector(
+          onTap: () {
+            Navigator.push(context, MaterialPageRoute(builder: (context)
+            =>
+                ResultPage()));
+          },
+          child: Container(
+      child: Text('CALCULATE IT'),
+      color: Color(0XFFEB1555),
+      height: 80,
+      width: double.infinity,
+    ),)
+    ,
+    ]
+    ,
+    )
+    );
   }
 }
 
