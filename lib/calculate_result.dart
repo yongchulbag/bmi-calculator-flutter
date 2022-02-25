@@ -13,7 +13,6 @@ class CalculateResult {
   }
 
   String EvaluateBMI() {
-    resultBMI = weight / pow(height / 100, 2);
     if (resultBMI >= 25) {
       return "Overweight";
     } else if (resultBMI > 18.5) {
@@ -24,7 +23,6 @@ class CalculateResult {
   }
 
   String AdviceSentenceForBMI() {
-    resultBMI = weight / pow(height / 100, 2);
     if (resultBMI >= 25) {
       return "You have a highe than normal body weight. Try to exercise more.";
     } else if (resultBMI > 18.5) {
@@ -35,4 +33,6 @@ class CalculateResult {
   }
 }
 
-//resultBMI를 젤 위 함수에서 한번만 계산하면 에러나버림 ㅠㅠ
+// resultBMI를 젤 위 함수에서 한번만 계산하면 에러나버림 ㅠㅠ
+
+//원룸 말고 약국에 와서 실행해보니 SHOWBMI에서 한번만 계산해도 에러안남 미쳤 ㅋㅋㅋㅋㅋ
