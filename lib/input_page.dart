@@ -6,6 +6,7 @@ import 'primary_card.dart';
 import 'icon_inside_card.dart';
 import 'result_page.dart';
 import 'bottom_red_button.dart';
+import 'calculate_result.dart';
 
 enum Gender {
   male,
@@ -225,8 +226,10 @@ class _InputPageState extends State<InputPage> {
               height: 10,
             ),
             BottomRedButton(buttonTitle: 'CALCULATE THIS!', onClick: () {
+
+              CalculateResult calc = CalculateResult(height: user_Height, weight: user_Weight);
               Navigator.push(context,
-                  MaterialPageRoute(builder: (context) => ResultPage()));
+                  MaterialPageRoute(builder: (context) => ResultPage({bmi_number:calc.CalculateBMI(), bmi_evalute:calc.EvaluateBMI(), bmi_advicesentense:calc.AdviceSentenceForBMI()});
             }),
           ],
         ));

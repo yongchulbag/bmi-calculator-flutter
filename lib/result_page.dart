@@ -4,6 +4,13 @@ import 'primary_card.dart';
 import 'bottom_red_button.dart';
 
 class ResultPage extends StatelessWidget {
+
+  ResultPage({this.bmi_number, this.bmi_evaluate, this.bmi_advicesentence});
+
+  String bmi_number;
+  String bmi_evaluate;
+  String bmi_advicesentence;
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -15,12 +22,16 @@ class ResultPage extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.stretch,
           children: [
             Expanded(
-                child: Container(
-              child: Text('HI THERE',
-                  style: TextStyle(fontSize: 50, fontWeight: FontWeight.bold)),
-            )),
+              child: Container(
+                padding:EdgeInsets.all(15),
+                alignment: Alignment.bottomLeft,
+                child: Text('HI THERE',
+                    style:
+                        TextStyle(fontSize: 50, fontWeight: FontWeight.bold)),
+              ),
+            ),
             Expanded(
-              flex: 5,
+              flex: 6,
               child: Primary_Card(
                 selected_color: activatedCardColor,
                 inside_card: Column(
@@ -49,7 +60,12 @@ class ResultPage extends StatelessWidget {
                 ),
               ),
             ),
-            BottomRedButton(buttonTitle: 'GO BACK TO PREVIOUS', onClick: () {Navigator.pop(context);},)
+            BottomRedButton(
+              buttonTitle: 'GO BACK TO PREVIOUS',
+              onClick: () {
+                Navigator.pop(context);
+              },
+            )
           ],
         ));
   }
