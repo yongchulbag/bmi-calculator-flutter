@@ -7,9 +7,9 @@ class ResultPage extends StatelessWidget {
 
   ResultPage({this.bmi_number, this.bmi_evaluate, this.bmi_advicesentence});
 
-  String bmi_number;
-  String bmi_evaluate;
-  String bmi_advicesentence;
+  final String bmi_number;
+  final String bmi_evaluate;
+  final String bmi_advicesentence;
 
   @override
   Widget build(BuildContext context) {
@@ -25,7 +25,7 @@ class ResultPage extends StatelessWidget {
               child: Container(
                 padding:EdgeInsets.all(15),
                 alignment: Alignment.bottomLeft,
-                child: Text('HI THERE',
+                child: Text('YOUR RESULT',
                     style:
                         TextStyle(fontSize: 50, fontWeight: FontWeight.bold)),
               ),
@@ -39,20 +39,20 @@ class ResultPage extends StatelessWidget {
                   crossAxisAlignment: CrossAxisAlignment.center,
                   children: [
                     Text(
-                      'Normal',
+                      bmi_evaluate.toUpperCase(),
                       style: TextStyle(
                         color: Color(0XFF24D876),
-                        fontSize: 22,
+                        fontSize: 30,
                         fontWeight: FontWeight.bold,
                       ),
                     ),
                     Text(
-                      '15.5',
+                      bmi_number,
                       style:
                           TextStyle(fontSize: 100, fontWeight: FontWeight.bold),
                     ),
                     Text(
-                      'EAT more',
+                      bmi_advicesentence,
                       style: TextStyle(fontSize: 22),
                       textAlign: TextAlign.center,
                     ),
